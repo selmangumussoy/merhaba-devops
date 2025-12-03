@@ -35,13 +35,14 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                withCredentials([file(credentialsId: 'kubeconfig-file', variable: 'KUBECONFIG')]) {
-                    sh """
-                        kubectl set image deployment/projem projem=$IMAGE_NAME
-                        kubectl rollout status deployment/projem
-                    """
+                script {
+                    withEnv(["KUBECONFIG=/home/selmangumussoy/.kube/config"]) {
+                        sh """
+                            kubectl set image deployment/projem projem=$IMAGE_NAME
+                            kubectl rollout status deployment/projem
+                        """
+                    }
                 }
-                
             }
         }
     }
