@@ -10,7 +10,7 @@ pipeline {
         stage('Git Checkout') {
             steps {
                 git branch: 'master', 
-                    url: 'https://github.com/selmangumussoy/merhaba-    devops.git', 
+                    url: 'https://github.com/selmangumussoy/merhaba-devops.git', 
                     credentialsId: 'github-token'
             }
         }
