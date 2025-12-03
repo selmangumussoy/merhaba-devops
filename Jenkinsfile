@@ -36,7 +36,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    withEnv(["KUBECONFIG=/home/selmangumussoy/.kube/config"]) {
+                    withEnv(["KUBECONFIG=/var/lib/jenkins/.kube/config"]) {
                         sh """
                             kubectl set image deployment/projem projem=$IMAGE_NAME
                             kubectl rollout status deployment/projem
